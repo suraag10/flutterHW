@@ -1,19 +1,14 @@
 // 4. Write a function which takes a list of integer as input and returns the multiplication of all the numbers which is divisible by 5;
 // [1,2,4,5,10,10,7] => 500
 
-void main() {
-  print(divisibleby5([1,2,4,5,10,10,7]));
-}
-
-List divisibleby5(List<int> numbers) {
-  List<int> newlist = [];
-  for (int element in numbers) {
-    if (element % 5 == 0) {
-      newlist.add(element);
+int findMultiplication(List<int> numbers) {
+  int multiplication = 1;
+  for (int num in numbers) {
+    if (num % 5 == 0) {
+      // multiplication
+      multiplication *= num;
     }
   }
-  for (int element in newlist){
-    element+=
-  }
-  return newlist;
+  return multiplication;
 }
+

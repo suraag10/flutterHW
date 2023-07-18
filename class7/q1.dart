@@ -3,8 +3,12 @@
 // ***
 // ***
 
-void main(){}
-
-void func(int length, int height){
-  for(l)
+void printStart(int length, int height) {
+  for (int i = 0; i < height; i++) {
+    String stars = "";
+    for (int j = 0; j < length; j++) {
+      stars += "*";
+    }
+    print(stars);
+  }
 }
