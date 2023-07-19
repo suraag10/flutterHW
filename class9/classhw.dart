@@ -7,55 +7,71 @@ Create factory constructor for car and bike which create instance of vehicle wit
 You can add customization like addPetrol which increases petrolQuantity and update totalCost as per petrol price. */
 
 void main() {
-  // Vehicle vehicle1 = Vehicle(null, null, null, null, null);
-  // Vehicle vehicle2 = Vehicle(2, 'bike', 300, 1, 40);
-  Vehicle vehicle3 = Vehicle.bike();
-  // Vehicle vehicle4 = Vehicle.car();
+  // Vehicle vehicle1 = Vehicle('bike', 2, 30, 200, 4);
+  Vehicle vehicle2 = Vehicle(type: 'bike', numberOfWheels: 2);
+  vehicle2.drive(80);
 }
 
 class Vehicle {
-  int? numberOfWheels; // number can be either 2 or 4
-  String? type; // type can be car,bus,bike
-  int? mileage;
-  int? totalDistance;
-  int? petrolQuantity;
+  String type;
+  int numberOfWheels;
+  int mileage;
+  int totalDistance;
+  int petrolQuantity;
 
-  Vehicle(int? this.numberOfWheels, String? this.type, int? this.totalDistance,
-      int? petrolquantity, int? this.mileage) {
-    numberOfWheels = numberOfWheels ?? 4;
-    type = type ?? 'car';
-    totalDistance = totalDistance ?? 0;
-    petrolQuantity = petrolquantity ?? 0;
-    mileage = mileage ?? 40;
-
-    print('This is a $numberOfWheels wheeler Vehicle');
-    print('This is a $type');
-    print('Total Distance covered = $totalDistance');
-    print('Petrol in this $type = $petrolQuantity');
-    print('Mileage in this $type is $mileage km per liter');
-    
-    void drive(int noOfKM) {
-      mileage = mileage ?? 40;
-      double kmperliter = noOfKM / mileage;
-
-      petrolQuantity = petrolQuantity ?? 0 + kmperliter;
-      totalDistance = totalDistance ?? 0 + noOfKM;
-  }
-    
+  Vehicle(
+      {this.type = 'car',
+      this.numberOfWheels = 4,
+      this.mileage = 40, //assuming the vehicle runs 40kmperliter
+      this.totalDistance = 0,
+      this.petrolQuantity = 0}) {
+    print('$type');
+    print('$numberOfWheels number of wheels.');
+    print('$mileage mileage');
+    print('$totalDistance totalDistance');
+    print('$petrolQuantity petrol quantity');
   }
 
-  // void drive(int noOfKM) {
-  //   mileage = mileage ?? 40;
-  //   double kmperliter = noOfKM / mileage;
-
-  //   petrolQuantity = petrolQuantity ?? 0 + kmperliter;
-  //   totalDistance = totalDistance ?? 0 + noOfKM;
-  // }
+  void drive(int noOfKM) {
+    double kmperliter = noOfKM / mileage;
+    // kmperliter.toInt()
+    petrolQuantity = petrolQuantity + kmperliter.toInt();
+    totalDistance = totalDistance + noOfKM;
+    print('The total Distance is $totalDistance');
+    print('The total Petrol quantity is $petrolQuantity');
+  }
 
   factory Vehicle.bike() {
-    return Vehicle(2, 'Bike', null, null, null);
+    return Vehicle(type: 'Bike', numberOfWheels: 2);
   }
+
   factory Vehicle.car() {
-    return Vehicle(4, 'Car', null, null, null);
+    return Vehicle(type: 'Car', numberOfWheels: 4);
   }
+}
+
+// In the homework of class, extend the vehicle class in Car and Bike class and add car and bike specific features like legguards, bootspace
+
+class car extends Vehicle {
+  // String type ='car';
+  // int numberOfWheels=4;
+
+  bool legguard = false;
+  bool bootspace = true;
+  bool reversegear = true;
+
+  car({String type = 'car', int numberOfWheels = 4})
+      : super(type: type, numberOfWheels: numberOfWheels);
+}
+
+class bike extends Vehicle {
+  // String type ='car';
+  // int numberOfWheels=4;
+
+  bool legguard = true;
+  bool bootspace = false;
+  bool reversegear = false;
+
+  bike({String type = 'bike', int numberOfWheels = 2})
+      : super(type: type, numberOfWheels: numberOfWheels);
 }
